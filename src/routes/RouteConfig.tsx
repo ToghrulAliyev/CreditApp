@@ -3,6 +3,7 @@ import App from "../App";
 import NotFound from "../pages/NotFound/Notfound";
 import Userfin from "../pages/User/Userfin";
 import CreateUser from "../pages/createUser/createUser";
+import AddCredit from "../pages/addCredit/addCredit";
 const RouteConfig = createBrowserRouter(
   [
     {
@@ -16,6 +17,10 @@ const RouteConfig = createBrowserRouter(
     {
       path: "/createUser",
       element: <CreateUser />,
+    },
+    {
+      path: "/addcredit",
+      element: <AddCredit />,
     },
     // {
     //   path: "/login",

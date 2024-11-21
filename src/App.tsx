@@ -6,7 +6,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-// import { makeStyles } from "@mui/styles";
+
 import ClearIcon from "@mui/icons-material/Clear";
 import SearchIcon from "@mui/icons-material/Search";
 import CardContent from "@mui/material/CardContent";
@@ -301,6 +301,7 @@ function App() {
                   </Box>
                   <Box sx={{ display: "flex", gap: 2 }}>
                     <Button
+                      onClick={() => navigate("/addcredit", { state: item })}
                       variant="contained"
                       color="primary"
                       sx={{ marginTop: "1rem" }}>
