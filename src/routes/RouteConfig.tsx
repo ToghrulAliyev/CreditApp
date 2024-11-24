@@ -4,6 +4,7 @@ import NotFound from "../pages/NotFound/Notfound";
 import Userfin from "../pages/User/Userfin";
 import CreateUser from "../pages/createUser/createUser";
 import AddCredit from "../pages/addCredit/addCredit";
+import UserCredits from "../pages/showcredit/userCredits";
 const RouteConfig = createBrowserRouter(
   [
     {
@@ -22,6 +23,11 @@ const RouteConfig = createBrowserRouter(
       path: "/addcredit",
       element: <AddCredit />,
     },
+    {
+      path: "/usercredits",
+      element: <UserCredits />,
+    },
+
     // {
     //   path: "/login",
     //   element: <Login />,

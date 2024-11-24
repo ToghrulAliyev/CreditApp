@@ -6,14 +6,13 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-// import { makeStyles } from "@mui/styles";
 import { ArrowBack, Home, Phone } from "@mui/icons-material";
 import CardContent from "@mui/material/CardContent";
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 import { addUsers, updateUser } from "../../store/userSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { Form, useForm } from "react-hook-form";
-import { useNavigate, useLocation } from "react-router-dom";
 
 type Props = {};
 
@@ -32,6 +31,7 @@ const createUser = (props: Props) => {
     dateOfBirth: "",
     mobileNumber: "",
     homeNumber: "",
+    credit: [],
   });
   const dispatch = useDispatch();
 

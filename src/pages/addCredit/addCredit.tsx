@@ -10,24 +10,27 @@ import {
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import AddGuarantor from "./components/addGuarantor";
+import CreditCalculator from "./components/creditCalculator";
+import Summary from "./components/summary";
 
 type Props = {};
 
 const AddCredit = (props: Props) => {
   const [activeStep, setActiveStep] = useState(0);
   const [formData, setFormData] = useState({
-    activitySector: "",
-    monthlyIncome: "",
-    workExperienceYears: "",
-    workExperienceMonths: "",
-    region: "",
-    businessAddress: "",
-
-    currency: "",
-    creditPurpose: "",
-    amount: "",
-    duration: "",
-    interestRate: "",
+    activitySector: "Developer",
+    monthlyIncome: "5000",
+    workExperienceYears: "5",
+    workExperienceMonths: "8",
+    region: "Baku",
+    businessAddress: "Burncode",
+    currency: "₼",
+    creditPurpose: "Startup",
+    amount: "25000",
+    duration: "2",
+    interestRate: "10",
+    guarantor: [],
   });
 
   const steps = [
@@ -62,7 +65,7 @@ const AddCredit = (props: Props) => {
   };
 
   const submitForm = () => {
-    console.log("Final Form Data:", formData);
+    navigate("/");
   };
 
   return (
@@ -177,6 +180,11 @@ const AddCredit = (props: Props) => {
             />
           </Box>
         )}
+        {activeStep === 2 && (
+          <AddGuarantor setFormData={setFormData} formData={formData} />
+        )}
+        {activeStep === 3 && <CreditCalculator />}
+        {activeStep === 4 && <Summary formData={formData} />}
 
         <Box sx={{ display: "flex", justifyContent: "space-between", mt: 3 }}>
           <Button onClick={handleBack} disabled={activeStep === 0}>
@@ -187,6 +195,16 @@ const AddCredit = (props: Props) => {
           </Button>
         </Box>
       </form>
+
+      <Box sx={{ mt: 3, width: "100%", maxWidth: "600px", marginTop: "5rem" }}>
+        <Button
+          sx={{ width: "100%" }}
+          color="secondary"
+          onClick={() => navigate("/")}
+          variant="contained">
+          Ana Səhifəyə Qayıt
+        </Button>
+      </Box>
     </Box>
   );
 };

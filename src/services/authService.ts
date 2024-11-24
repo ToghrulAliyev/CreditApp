@@ -1,4 +1,3 @@
-// services/authService.ts
 export const login = async (username: string, password: string) => {
   try {
     const response = await fetch("/api/login", {

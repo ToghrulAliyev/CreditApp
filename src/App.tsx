@@ -13,22 +13,9 @@ import CardContent from "@mui/material/CardContent";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { deleteUser } from "./store/userSlice";
+import { deleteUser, setSelectedUser } from "./store/userSlice";
 import { IUser } from "./types";
 
-// const user: IUser = {
-//   physicalAddress: "Bakı şəhəri, Yasamal rayonu, 28 may küçəsi, ev 1",
-//   fin: "8WLEGNA",
-//   series: "AA",
-//   code: "7621245",
-//   name: "Yusif",
-//   surname: "Mahmudov",
-//   fathersName: "Asif",
-//   registrationAddress: "Bakı şəhəri, Binəqədi rayonu, gülüstan küçəsi, ev 1",
-//   dateOfBirth: "15.04-1988",
-//   mobileNumber: "+994585234567",
-//   homeNumber: "0129949413",
-// };
 function App() {
   const [fin, setFin] = useState("");
   const [filteredUsers, setFilteredUsers] = useState<IUser[]>([]);
@@ -82,6 +69,12 @@ function App() {
             value={fin}
             onChange={handleSearchFin}
             size="small"
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                filterUser();
+              }
+            }}
             slotProps={{
               input: {
                 endAdornment: (
@@ -301,18 +294,30 @@ function App() {
                   </Box>
                   <Box sx={{ display: "flex", gap: 2 }}>
                     <Button
-                      onClick={() => navigate("/addcredit", { state: item })}
+                      onClick={() => {
+                        navigate("/usercredits"),
+                          dispatch(setSelectedUser(item));
+                      }}
                       variant="contained"
                       color="primary"
                       sx={{ marginTop: "1rem" }}>
-                      Kredit Yarat
+                      KREDİTLƏRİ GÖR
+                    </Button>
+                    <Button
+                      onClick={() => {
+                        navigate("/addcredit"), dispatch(setSelectedUser(item));
+                      }}
+                      variant="contained"
+                      color="primary"
+                      sx={{ marginTop: "1rem" }}>
+                      KREDİT Yarat
                     </Button>
                     <Button
                       onClick={() => editUser(item)}
                       variant="contained"
                       color="primary"
                       sx={{ marginTop: "1rem" }}>
-                      Düzəliş Et
+                      DÜZƏLİŞ ET
                     </Button>
                     <Button
                       type="button"
@@ -320,7 +325,7 @@ function App() {
                       variant="contained"
                       color="primary"
                       sx={{ marginTop: "1rem" }}>
-                      Sil
+                      SİL
                     </Button>
                   </Box>
                 </CardContent>
